@@ -2,6 +2,7 @@ package com.demoqa.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.demoqa.pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,9 +18,6 @@ public class PracticeFormPage {
             setEmail = $("#userEmail"),
             setGenterWrapper = $("#genterWrapper"),
             setPhone = $("#userNumber"),
-            dateOfBirthInput = $("#dateOfBirthInput"),
-            setMonth = $(".react-datepicker__month-select"),
-            setYear = $(".react-datepicker__year-select"),
             setSubjectsInput = $("#subjectsInput"),
             setHobbiesWrapper = $("#hobbiesWrapper"),
             uploadPicture = $("#uploadPicture"),
@@ -63,10 +61,7 @@ public class PracticeFormPage {
     }
 
     public PracticeFormPage setCalendarDate(String day, String month, String year) {
-        dateOfBirthInput.click();
-        setMonth.selectOption(month);
-        setYear.selectOption(year);
-        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
+        CalendarComponent calendarComponent = new CalendarComponent(day, month, year);
         return this;
     }
 

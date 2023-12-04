@@ -3,7 +3,9 @@ package com.demoqa.tests;
 import com.codeborne.selenide.Configuration;
 import com.demoqa.pages.PracticeFormPage;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class FormTest {
 
@@ -12,28 +14,17 @@ public class FormTest {
     @BeforeAll
     static void setUp() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1366x1060";
+        Configuration.browserSize = "1366x1085";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
     }
 
-    @Test
-    void successfulRegistrationTest() {
-        String firstName = "Fedor",
-                lastName = "Kon",
-                email = "super@demoqa.com",
-                genter = "Other",
-                phone = "1223456789",
-                day = "03",
-                month = "April",
-                year = "1979",
-                subject = "Social Studies",
-                hobbies = "Reading",
-                fileName = "test_pic.jpg",
-                state = "Haryana",
-                city = "Panipat",
-                address = "Current Address for successful Registration Test";
-
+    @CsvFileSource(resources = "/successfulRegistrationTestData.csv")
+    @ParameterizedTest(name = "Регистрация пользователя {0} {1}")
+    @Tag("UI_TEST")
+    void successfulRegistrationTest(String firstName, String lastName, String email, String genter, String phone,
+                                    String day, String month, String year, String subject, String hobbies,
+                                    String fileName, String address, String state, String city) {
         practiceFormPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
