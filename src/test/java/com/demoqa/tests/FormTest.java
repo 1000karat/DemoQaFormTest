@@ -2,10 +2,14 @@ package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.demoqa.pages.PracticeFormPage;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 public class FormTest {
 
@@ -48,5 +52,16 @@ public class FormTest {
                 .verifyResult("Hobbies", hobbies)
                 .verifyResult("Picture", fileName)
                 .verifyResult("Address", address);
+    }
+    @Test
+    public void shouldHaveCityTest() {
+        String[] expected = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+        practiceFormPage.openPage();
+        $x("//div[contains(text(), 'Select State')]").click();
+
+        String getCity = String.valueOf($x("//div[contains(@class, 'css-26l3qy-menu')]").getText());
+        String[] cityArray = getCity.split(System.lineSeparator());
+
+        Assertions.assertArrayEquals(expected, cityArray);
     }
 }
