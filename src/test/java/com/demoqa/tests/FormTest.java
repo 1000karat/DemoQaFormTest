@@ -60,7 +60,7 @@ public class FormTest {
         $x("//div[contains(text(), 'Select State')]").click();
 
         String getCity = String.valueOf($x("//div[contains(@class, 'css-26l3qy-menu')]").getText());
-        String[] cityArray = getCity.split(System.lineSeparator());
+        String[] cityArray = getCity.split("\\n");
 
         Assertions.assertArrayEquals(expected, cityArray);
     }
