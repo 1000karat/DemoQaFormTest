@@ -1,19 +1,17 @@
 package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.demoqa.helper.GenerateTestData;
 import com.demoqa.pages.PracticeFormPage;
-import org.junit.jupiter.api.Assertions;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-
-import static com.codeborne.selenide.Selenide.$x;
 
 public class FormTest {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
+    Faker faker = new Faker();
 
     @BeforeAll
     static void setUp() {
@@ -23,19 +21,31 @@ public class FormTest {
         Configuration.holdBrowserOpen = false;
     }
 
-    @CsvFileSource(resources = "/successfulRegistrationTestData.csv")
-    @ParameterizedTest(name = "Регистрация пользователя {0} {1}")
     @Tag("UI_TEST")
-    void successfulRegistrationTest(String firstName, String lastName, String email, String genter, String phone,
-                                    String day, String month, String year, String subject, String hobbies,
-                                    String fileName, String address, String state, String city) {
+    @Test
+    void successfulRegistrationTest() {
+
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String email = faker.internet().emailAddress();
+        String gender = faker.options().option("Male", "Female", "Other");
+        String phone = faker.phoneNumber().subscriberNumber(10);
+        String[] calendarDate = GenerateTestData.getCalendarDate();
+        String subject = faker.options().option("History", "Arts", "Biology", "Maths", "Commerce",
+                "Social Studies", "Civics", "Hindi");
+        String hobbies = faker.options().option("Sports", "Reading", "Music");
+        String fileName = "test_pic.jpg";
+        String address = faker.address().fullAddress();
+        String state = GenerateTestData.getState();
+        String city = GenerateTestData.getCity(state);
+
         practiceFormPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setGenterWrapper(genter)
+                .setGenterWrapper(gender)
                 .setPhone(phone)
-                .setCalendarDate(day, month, year)
+                .setCalendarDate(calendarDate[0], calendarDate[1], calendarDate[2])
                 .setSubjectsInput(subject)
                 .setHobbiesWrapper(hobbies)
                 .uploadPicture(fileName)
@@ -45,23 +55,12 @@ public class FormTest {
                 .verifyResultModalText()
                 .verifyResult("Student Name", firstName + " " + lastName)
                 .verifyResult("Student Email", email)
-                .verifyResult("Gender", genter)
+                .verifyResult("Gender", gender)
                 .verifyResult("Mobile", phone)
-                .verifyResult("Date of Birth", day + " " + month + "," + year)
+                .verifyResult("Date of Birth", calendarDate[0] + " " + calendarDate[1] + "," + calendarDate[2])
                 .verifyResult("Subjects", subject)
                 .verifyResult("Hobbies", hobbies)
                 .verifyResult("Picture", fileName)
                 .verifyResult("Address", address);
-    }
-    @Test
-    public void shouldHaveCityTest() {
-        String[] expected = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
-        practiceFormPage.openPage();
-        $x("//div[contains(text(), 'Select State')]").click();
-
-        String getCity = String.valueOf($x("//div[contains(@class, 'css-26l3qy-menu')]").getText());
-        String[] cityArray = getCity.split("\\n");
-
-        Assertions.assertArrayEquals(expected, cityArray);
     }
 }

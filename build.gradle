@@ -26,6 +26,7 @@ dependencies {
 
   testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  testImplementation('com.github.javafaker:javafaker:1.0.2')
 }
 
 test {
