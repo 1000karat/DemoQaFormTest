@@ -21,3 +21,5 @@
 https://github.com/1000karat/DemoQaFormTest/blob/4de817b72b0902f8a5a063383f2fddcfdd744dd0/src/test/java/com/demoqa/tests/FormTest.java#L63
 на работоспособную в Windows + Linux:
 https://github.com/1000karat/DemoQaFormTest/blob/fefe1776c23d6441fdc5f80ee5240c164a43166e/src/test/java/com/demoqa/tests/FormTest.java#L63
+2. Создан тест в ветке faker, с использованием библиотеки faker
+https://github.com/1000karat/DemoQaFormTest/blob/3815bd519e64157f23a67eb14f8fe73f368e5ab2/src/test/java/com/demoqa/tests/FormTest.java#L26
