@@ -26,7 +26,7 @@ public class FormTest {
     @CsvFileSource(resources = "/successfulRegistrationTestData.csv")
     @ParameterizedTest(name = "Регистрация пользователя {0} {1}")
     @Tag("UI_TEST")
-    void successfulRegistrationTest(String firstName, String lastName, String email, String genter, String phone,
+    public void successfulRegistrationTest(String firstName, String lastName, String email, String genter, String phone,
                                     String day, String month, String year, String subject, String hobbies,
                                     String fileName, String address, String state, String city) {
         practiceFormPage.openPage()
