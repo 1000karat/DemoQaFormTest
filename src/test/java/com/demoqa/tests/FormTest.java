@@ -23,7 +23,7 @@ public class FormTest {
 
     @Tag("UI_TEST")
     @Test
-    void successfulRegistrationTest() {
+    public void successfulRegistrationTest() {
 
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
