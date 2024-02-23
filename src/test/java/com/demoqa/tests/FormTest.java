@@ -14,7 +14,7 @@ public class FormTest {
     Faker faker = new Faker();
 
     @BeforeAll
-    static void setUp() {
+    public static void setUp() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1366x1085";
         Configuration.pageLoadStrategy = "eager";
