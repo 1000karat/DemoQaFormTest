@@ -1,12 +1,16 @@
 package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import com.demoqa.helper.AttachForTest;
 import com.demoqa.helper.GenerateTestData;
 import com.demoqa.pages.PracticeFormPage;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.*;
 
 public class FormTest {
 
@@ -15,13 +19,20 @@ public class FormTest {
 
     @BeforeAll
     public static void setUp() {
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1366x1085";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
+        Configuration.headless = true;
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @Tag("UI_TEST")
+    @Owner("1000karat")
+    @Feature("Student Registration Form")
+    @Story("Отправка заполненной формы")
+    @DisplayName("Registration Form Test")
     @Test
     public void successfulRegistrationTest() {
 
@@ -62,5 +73,13 @@ public class FormTest {
                 .verifyResult("Hobbies", hobbies)
                 .verifyResult("Picture", fileName)
                 .verifyResult("Address", address);
+    }
+
+    @AfterEach
+    void tearDown() {
+        AttachForTest.screenshotAs("LastScreenshot");
+        AttachForTest.pageSource();
+        AttachForTest.browserConsoleLogs();
+        AttachForTest.addVideo();
     }
 }
