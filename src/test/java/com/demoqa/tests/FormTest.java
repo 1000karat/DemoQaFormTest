@@ -12,6 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 
+@Tag("simple")
 public class FormTest {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
