@@ -11,6 +11,9 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
 
 @Tag("simple")
 public class FormTest {
@@ -20,13 +23,20 @@ public class FormTest {
 
     @BeforeAll
     public static void setUp() {
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "100.0";
+        Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1366x1085";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = false;
-        Configuration.headless = true;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+
+        Configuration.browserCapabilities = capabilities;
     }
 
     @Tag("UI_TEST")

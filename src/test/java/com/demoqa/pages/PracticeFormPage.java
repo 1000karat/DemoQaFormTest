@@ -34,12 +34,14 @@ public class PracticeFormPage {
     public PracticeFormPage openPage() {
         open(URL_PATH);
         header.shouldHave(Condition.text(HEADER_PAGE_TEXT));
+        executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
 
     @Step("Заполнить firstName: {value}")
     public PracticeFormPage setFirstName(String value) {
+        $(".fc-button-label").click();
         firstName.setValue(value);
         return this;
     }
