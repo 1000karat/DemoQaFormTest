@@ -10,12 +10,12 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+/*sourceCompatibility = '17'
+targetCompatibility = '17'*/
 
 // кодировка файлов (если используете русский язык в файлах)
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 allure {
     report {
