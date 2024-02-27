@@ -15,7 +15,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
-@Tag("simple")
 public class FormTest {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
