@@ -34,3 +34,7 @@ https://github.com/1000karat/DemoQaFormTest/blob/fefe1776c23d6441fdc5f80ee5240c1
 
 Скриншоты Allure Report и видео прохождения теста:
 
+<img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/jenkins.png" width="45%" height="45%"> <img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/allure_report_01.png" width="45%" height="45%">
+<img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/allure_report_02.png" width="45%" height="45%">  <img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/allure_report_03.png" width="45%" height="45%">
+
+<img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/test.gif" width="45%" height="45%">
