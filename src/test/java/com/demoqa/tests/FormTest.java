@@ -15,6 +15,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
+import static java.lang.System.getProperty;
+
 public class FormTest {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
@@ -22,11 +24,11 @@ public class FormTest {
 
     @BeforeAll
     public static void setUp() {
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "100.0";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browser = getProperty("browser","chrome");
+        Configuration.browserVersion = getProperty("browser_version", "100.0");
+        Configuration.browserSize = getProperty("browser_size", "1920x1080");
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = getProperty("remote_url", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
