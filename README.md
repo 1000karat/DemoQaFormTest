@@ -38,3 +38,9 @@ https://github.com/1000karat/DemoQaFormTest/blob/fefe1776c23d6441fdc5f80ee5240c1
 <img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/allure_report_02.png" width="45%" height="45%">  <img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/allure_report_03.png" width="45%" height="45%">
 
 <img src="https://github.com/1000karat/DemoQaFormTest/raw/allure-jenkins/result-test/test.gif" width="45%" height="45%">
+
+###### 27.02.2024
+1. Создана ветка jenkins-properties https://github.com/1000karat/DemoQaFormTest/tree/allure-jenkins
+Скриншот вынесенных настроек jenkins:
+
+<img src="https://github.com/1000karat/DemoQaFormTest/raw/jenkins-properties/result-test/jenkins_build.png" width="45%" height="45%">  <img src="https://github.com/1000karat/DemoQaFormTest/raw/jenkins-properties/result-test/jenkins_settings.png" width="45%" height="45%">
